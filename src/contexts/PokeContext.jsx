@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom"
 
 export const PokeContext = createContext(null);
 
-export default function AuthContextProvider(props) {
+export default function PokeContextProvider(props) {
   const [selectedPokemon, setSelectedPokemon] = useState({})
   const [pokeList, setPokeList] = useState([]);
   const [filterState, setFilterState] = useState({
@@ -38,10 +38,9 @@ export default function AuthContextProvider(props) {
       );
   };
 
-  useEffect(
-    getAllPokemon(), []
-
-  )
+  useEffect(() => {
+    getAllPokemon()
+  }, [])
 
   return (
     <PokeContext.Provider

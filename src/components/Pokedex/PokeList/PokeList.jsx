@@ -5,11 +5,12 @@ import PokeCard from "../PokeCard/PokeCard";
 function PokeListFiltered(props) {
   const { pokeList } = useContext(PokeContext);
   return (
-    <React.Fragment>
-      {pokeList.map((pokemon, index) => (
-        <PokeCard pokemon={pokemon} key={index} />
-      ))}
-    </React.Fragment>
+
+      <select>
+        {pokeList.map((pokemon, index) => (
+          <option value={pokemon.name} key={index} >{pokemon.name}</option>
+        ))}
+      </select>
   );
 }
 
