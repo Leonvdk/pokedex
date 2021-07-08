@@ -1,16 +1,18 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React from 'react';
+// import { PokeContext } from '../../contexts/PokeContext'
 import Filter from './Filter/Filter';
+import PokeListFiltered from './PokeListFiltered/PokeListFiltered';
+
 
 function Pokedex(props) {
 
-  const [state, setState] = useState({
-    pokemon:{},
-  })
+  // const { pokeList } = useContext(PokeContext);
 
   return (
-    <div>
+    <React.Fragment>
       <Filter />
-    </div>
+      <PokeListFiltered />
+    </React.Fragment>
   );
 }
 
