@@ -6,9 +6,11 @@ import Footer from './components/Footer/Footer';
 import { BrowserRouter } from 'react-router-dom'
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import GlobalStyle from './globalStyles';
 
 ReactDOM.render(
   <React.StrictMode>
+    <GlobalStyle />
     <Header />
     <BrowserRouter>
       <App />

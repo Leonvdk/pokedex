@@ -1,14 +1,23 @@
 import React, { useState, useEffect, useContext } from "react";
 import { PokeContext } from "../../../contexts/PokeContext";
-import {PokeSelect, PokeOption} from "./PokeList.style";
+import {PokeSelect, PokeOption} from "../pokedex.style";
 
 function PokeListFiltered(props) {
-  const { pokeList } = useContext(PokeContext);
+  const { currentPokeList, pokeList, setCurrentPokeList } = useContext(PokeContext);
+
+  const resetCurrentPokelist = () => {
+    setCurrentPokeList(() => [...pokeList]);
+  }
+
+  useEffect(() => {
+    resetCurrentPokelist();
+  }, [])
+  
   return (
     <PokeSelect size='20'>
-      {pokeList.map((pokemon, index) => (
-        <PokeOption value={pokemon.name} key={index}>
-          {pokemon.name}
+      {currentPokeList.map((pokemon, index) => (
+        <PokeOption value={pokemon} key={index}>
+          {pokemon}
         </PokeOption>
       ))}
     </PokeSelect>
