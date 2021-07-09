@@ -1,16 +1,17 @@
 import React, { useState, useEffect, useContext } from "react";
 import { PokeContext } from "../../../contexts/PokeContext";
-import PokeCard from "../PokeCard/PokeCard";
+import {PokeSelect, PokeOption} from "./PokeList.style";
 
 function PokeListFiltered(props) {
   const { pokeList } = useContext(PokeContext);
   return (
-
-      <select>
-        {pokeList.map((pokemon, index) => (
-          <option value={pokemon.name} key={index} >{pokemon.name}</option>
-        ))}
-      </select>
+    <PokeSelect size='20'>
+      {pokeList.map((pokemon, index) => (
+        <PokeOption value={pokemon.name} key={index}>
+          {pokemon.name}
+        </PokeOption>
+      ))}
+    </PokeSelect>
   );
 }
 
