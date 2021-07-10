@@ -1,10 +1,11 @@
 import React from 'react';
+import { HeaderMain } from './Header.style'
 
 function Header(props) {
   return (
-    <div>
-      Header
-    </div>
+    <HeaderMain>
+      <h1>OGdex</h1>
+    </HeaderMain>
   );
 }
 
