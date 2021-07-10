@@ -1,20 +1,43 @@
 import styled, { createGlobalStyle } from "styled-components";
-import eightBit from "./Assets/Fonts/Pokemon Hollow.ttf"
+import eightBit from "./Assets/Fonts/Eight-Bit Madness.ttf"
 
 const GlobalStyle = createGlobalStyle`
   @font-face {
-    font-family: eightbit;
-    src: url(${eightBit}) format('truetype');
+    font-family: 'eightbit';
+    src: url(${eightBit});
     font-weight: normal;
     font-style: normal;
   }
+
+  /* width */
+::-webkit-scrollbar {
+  width: 20px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(0,0,0,.4); 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(0,0,0,.7); 
+  ; 
+}
+
   html {
     font-size: 10px;
-    margin: 0 0 0 20px;
   }
   body{
-    background: #EDECDD;
-    font-family: eightbit
+    background: #F71013;
+    font-family: 'eightbit';
   }
 
   h1{
@@ -42,5 +65,11 @@ const GlobalStyle = createGlobalStyle`
   }
 
 `;
+
+export const GlobalColors = {
+  red: '#F71013',
+  black: '#333',
+  green: '#C1DE3B'
+}
 
 export default GlobalStyle;

@@ -5,16 +5,17 @@ import { H3 } from "../../../globalStyles";
 
 
 const Filter = (props) => {
-  const { filterState, setFilterState, types, filterByType } = useContext(PokeContext);
-  const handleFilterChange = (event) => {
-    event.preventDefault();
-    setFilterState((prevState) => ({ ...prevState, name: event.target.value }));
-    console.log(event);
-  };
+  const { setSearchName, types, filterByType, getPokemonByName } = useContext(PokeContext);
+  
+  const [input, setInput] = useState('')
+
+
   return (
     <FilterContainer>
-      <form onSubmit={(event) => handleFilterChange(event)}>
-        <InputFilter type="text" name="filterByName" />
+      <form onSubmit={(event) => {
+        event.preventDefault() 
+        setSearchName(input)}}>
+        <InputFilter type="text" name="filterByName" onChange={(event)=> setInput(event.target.value)} />
       </form>
       <h4>Types</h4>
       <form>

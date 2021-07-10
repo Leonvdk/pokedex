@@ -11,8 +11,8 @@ function Pokedex(props) {
   return (
     <PokedexMain>
       <Filter />
-      <PokeList />
       <PokeView />
+      <PokeList />
     </PokedexMain>
 
   );
