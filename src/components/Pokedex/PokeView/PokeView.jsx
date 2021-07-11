@@ -7,9 +7,9 @@ function PokeView(props) {
   const { selectedPokemon } = useContext(PokeContext);
 
   return (
-    <Fragment>
-      {selectedPokemon&&
-        <PokeViewContainer>
+      <PokeViewContainer>
+        {selectedPokemon&&
+        <Fragment>
           <img src={selectedPokemon.sprites.front_default} alt="" height='200px' width='200px'/>
           <h3>{selectedPokemon.name}</h3>
           <p>Height: {selectedPokemon.height}</p>
@@ -18,9 +18,9 @@ function PokeView(props) {
           {selectedPokemon.stats.map((stat)=> (
             <p name='base-stat'>{stat.stat.name}: {stat.base_stat}</p>
           ))}
+        </Fragment>
+          }
         </PokeViewContainer>
-      }
-    </Fragment>
 
   
   );

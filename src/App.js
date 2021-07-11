@@ -1,6 +1,7 @@
 import "./reset.css";
 import "./App.css";
 import { Route, Switch } from "react-router-dom";
+import AuthContextProvider from "./contexts/AuthContext";
 import PokeContextProvider from './contexts/PokeContext'
 import Pokedex from "./components/Pokedex/Pokedex";
 import Register from "./components/Register/Register";
@@ -9,14 +10,16 @@ import UserProfile from "./components/UserProfile/UserProfile";
 
 function App() {
   return (
-    <PokeContextProvider>
-      <Switch>
-        <Route exact path="/" component={Pokedex} />
-        <Route path="/register" component={Register} />
-        <Route path="/login" component={Login} />
-        <Route path="/profile" component={UserProfile} />
-      </Switch>
-    </PokeContextProvider>
+    <AuthContextProvider>
+      <PokeContextProvider>
+        <Switch>
+          <Route exact path="/" component={Pokedex} />
+          <Route path="/register" component={Register} />
+          <Route path="/login" component={Login} />
+          <Route path="/profile" component={UserProfile} />
+        </Switch>
+      </PokeContextProvider>
+    </AuthContextProvider>
   );
 }
 

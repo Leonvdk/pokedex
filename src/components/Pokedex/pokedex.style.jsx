@@ -61,6 +61,7 @@ export const PokeOption = styled.div`
 
 export const PokeViewContainer = styled.div`
   display: flex;
+  height: 400px;
   flex-direction: column;
   align-items: center;
   grid-area: pokeview ;
