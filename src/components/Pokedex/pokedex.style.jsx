@@ -7,10 +7,14 @@ export const PokedexMain = styled.div`
   padding: 20px;
   display: grid;
   grid-template-areas:
-  'pokeview pokeview pokeview pokelist'
-  'pokeview pokeview pokeview pokelist'
-  'filter   filter   filter   pokelist'
-  '  .         .        .     pokelist'; 
+  'pokeview pokeview pokeview  pokelist'
+  'pokeview pokeview pokeview  pokelist'
+  'filter   filter   userLists pokelist'
+  '  .         .        .      pokelist'; 
+
+  UserLists{
+    grid-area: userLists
+  }
 
 `;
 
@@ -118,6 +122,12 @@ export const PokeViewContainer = styled.div`
     grid-template-rows: auto;
     grid-gap: 0 20px ;
   }
+`;
 
+export const List = styled.a`
+  background-color: ${GlobalColors.blue};
+  color: white;
+  text-decoration: none;
+  
 `;
 

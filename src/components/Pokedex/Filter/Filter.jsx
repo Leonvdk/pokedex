@@ -15,7 +15,7 @@ const Filter = (props) => {
       <form onSubmit={(event) => {
         event.preventDefault() 
         setSearchName(input)}}>
-        <InputFilter type="text" name="filterByName" placeholder='Find your OGmon' onChange={(event)=> setInput(event.target.value.toLowerCase())} />
+        <InputFilter type="text" name="filterByName" placeholder='Find your Pokeleon' onChange={(event)=> setInput(event.target.value.toLowerCase())} />
       </form>
       <h4>Types</h4>
       <form>

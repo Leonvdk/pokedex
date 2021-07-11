@@ -4,6 +4,7 @@ import Filter from "./Filter/Filter";
 import PokeList from "./PokeSelection/PokeSelection";
 import PokeView from "./PokeView/PokeView";
 import { PokedexMain } from "./pokedex.style"
+import UserLists from "./UserLists/UserLists";
 
 function Pokedex(props) {
   // const { pokeList } = useContext(PokeContext);
@@ -13,6 +14,7 @@ function Pokedex(props) {
       <Filter />
       <PokeView />
       <PokeList />
+      <UserLists />
     </PokedexMain>
 
   );

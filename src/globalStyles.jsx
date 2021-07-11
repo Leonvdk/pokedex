@@ -66,7 +66,8 @@ export const GlobalColors = {
   red: '#F71013',
   black: '#333',
   green: '#C1DE3B',
-  yellow: '#F7DA04'
+  yellow: '#F7DA04',
+  blue: '#3B53C5',
 }
 
 export const BoxShadow = `box-shadow: 5px 7px 0px 5px rgb(3,3,3,.4);`

@@ -1,6 +1,5 @@
 import React, { createContext, useState, useEffect } from "react";
 import axios from "axios";
-import { useHistory } from "react-router-dom"
 
 export const PokeContext = createContext(null);
 
@@ -53,8 +52,7 @@ export default function PokeContextProvider(props) {
       );
   };
 
-  // Filtering visible pokémon list
-
+  // Filtering visible pokémon selection list
   const filterByType = (type) => {
     type === 'all'
     ? setCurrentPokeList([...pokeList])
