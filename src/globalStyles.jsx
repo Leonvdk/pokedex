@@ -11,19 +11,20 @@ const GlobalStyle = createGlobalStyle`
 
   /* width */
 ::-webkit-scrollbar {
-  width: 20px;
+  width: 10px;
+  border-radius: 10px 0px 0px 10px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
   box-shadow: inset 0 0 5px grey; 
-  border-radius: 10px;
+  border-radius: 10px 0px 0px 10px;
 }
- 
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
   background: rgb(0,0,0,.4); 
-  border-radius: 10px;
+  border-radius: 10px 0px 0px 10px;
 }
 
 /* Handle on hover */
