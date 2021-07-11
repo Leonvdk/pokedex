@@ -2,12 +2,7 @@ import styled, { createGlobalStyle } from "styled-components";
 import eightBit from "./Assets/Fonts/Eight-Bit Madness.ttf"
 
 const GlobalStyle = createGlobalStyle`
-  @font-face {
-    font-family: 'eightbit';
-    src: url(${eightBit});
-    font-weight: normal;
-    font-style: normal;
-  }
+
 
   /* width */
 ::-webkit-scrollbar {
@@ -16,7 +11,7 @@ const GlobalStyle = createGlobalStyle`
 }
 
 /* Track */
-::-webkit-scrollbar-track {
+  ::-webkit-scrollbar-track {
   box-shadow: inset 0 0 5px grey; 
   border-radius: 10px 0px 0px 10px;
 }
@@ -38,26 +33,26 @@ const GlobalStyle = createGlobalStyle`
   }
   body{
     background: #F71013;
-    font-family: 'eightbit';
   }
 
   h1{
-    font-size: 3 rem;
+    font-size: 40px;
     font-weight: 600;
+    font-family: 'pokemon' !important;
   }
   h2{
-    font-size: 2.5 rem;
+    font-size: 30px;
     font-weight: 600;
   }
 
   h3{
-    font-size: 1.8rem;
+    font-size: 25px;
     font-weight: 600;
   }
 
   h4{
-    font-size: 1.4rem;
-    font-weight: 600;
+    font-size: 20px;
+    font-family: eightbit;
   }
 
   h5{
@@ -70,10 +65,17 @@ const GlobalStyle = createGlobalStyle`
 export const GlobalColors = {
   red: '#F71013',
   black: '#333',
-  green: '#C1DE3B'
+  green: '#C1DE3B',
+  yellow: '#F7DA04'
 }
 
 export const BoxShadow = `box-shadow: 5px 7px 0px 5px rgb(3,3,3,.4);`
+
+export const GradientBG =   `background: rgb(230,134,134);
+background: -moz-linear-gradient(167deg, rgba(230,134,134,1) 6%, rgba(247,16,19,1) 30%, rgba(172,23,26,1) 84%, rgba(175,6,6,1) 100%);
+background: -webkit-linear-gradient(167deg, rgba(230,134,134,1) 6%, rgba(247,16,19,1) 30%, rgba(172,23,26,1) 84%, rgba(175,6,6,1) 100%);
+background: linear-gradient(167deg, rgba(230,134,134,1) 6%, rgba(247,16,19,1) 30%, rgba(172,23,26,1) 84%, rgba(175,6,6,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#e68686",endColorstr="#af0606",GradientType=1);`
 
 
 export default GlobalStyle;

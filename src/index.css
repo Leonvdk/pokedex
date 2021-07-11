@@ -12,4 +12,26 @@ code {
     monospace;
 }
 
+@font-face {
+  font-family: 'pokemon';
+  src: url('./Assets//Fonts/Pokemon\ Hollow.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
 
+@font-face {
+  font-family: 'eightbit';
+  src: url('./Assets//Fonts/Eight-Bit\ Madness.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+h1{
+  font-family: 'pokemon' !important;
+  font-size: 40px;
+
+}
+
+p{
+  font-family: fantasy;
+}
