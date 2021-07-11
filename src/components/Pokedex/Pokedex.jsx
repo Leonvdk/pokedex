@@ -1,7 +1,7 @@
 import React from "react";
 // import { PokeContext } from '../../contexts/PokeContext'
 import Filter from "./Filter/Filter";
-import PokeList from "./PokeList/PokeList";
+import PokeList from "./PokeSelection/PokeSelection";
 import PokeView from "./PokeView/PokeView";
 import { PokedexMain } from "./pokedex.style"
 

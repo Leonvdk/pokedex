@@ -73,4 +73,7 @@ export const GlobalColors = {
   green: '#C1DE3B'
 }
 
+export const BoxShadow = `box-shadow: 5px 7px 0px 5px rgb(3,3,3,.4);`
+
+
 export default GlobalStyle;

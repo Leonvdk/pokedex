@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import pokeball from "../../Assets/Images/s_pokeball_pixel.png"
-import { GlobalColors } from '../../globalStyles';
-
+import { GlobalColors, BoxShadow } from "../../globalStyles"
 
 export const PokedexMain = styled.div`
   height: 100vh;
@@ -71,6 +70,7 @@ export const PokeViewContainer = styled.div`
   border: 3px solid #777;
   padding: 20px;
   margin: 20px;
+  ${BoxShadow} 
 
 `;
 

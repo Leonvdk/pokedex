@@ -4,7 +4,7 @@ import {PokeSelect, PokeOption} from "../pokedex.style";
 
 
 
-function PokeListFiltered(props) {
+function PokeSelection(props) {
   const { currentPokeList, pokeList, setCurrentPokeList, setSearchName } = useContext(PokeContext);
 
   const resetCurrentPokelist = () => {
@@ -31,4 +31,4 @@ function PokeListFiltered(props) {
   );
 }
 
-export default PokeListFiltered;
+export default PokeSelection;
