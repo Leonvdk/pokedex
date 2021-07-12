@@ -1,6 +1,5 @@
 import React, { createContext, useState, useEffect } from "react";
 import axios from "axios";
-import { useHistory } from "react-router-dom"
 
 export const PokeContext = createContext(null);
 
@@ -32,12 +31,13 @@ export default function PokeContextProvider(props) {
           response.data.results.forEach((pokemon) => {
             setPokeList((prevPokeList) => [...prevPokeList, pokemon.name]);
           })
-          setCurrentPokeList([...pokeList])
-          console.log('pokeListaaaa: ', pokeList)
-          console.log('currentPokeList: ', currentPokeList)
         }
       )
   };
+
+  useEffect(() => {
+    setCurrentPokeList([...pokeList])
+  }, [pokeList])
 
   const getAllTypes = () => {
     axios
@@ -53,8 +53,7 @@ export default function PokeContextProvider(props) {
       );
   };
 
-  // Filtering visible pokémon list
-
+  // Filtering visible pokémon selection list
   const filterByType = (type) => {
     type === 'all'
     ? setCurrentPokeList([...pokeList])
