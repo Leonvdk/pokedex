@@ -31,12 +31,13 @@ export default function PokeContextProvider(props) {
           response.data.results.forEach((pokemon) => {
             setPokeList((prevPokeList) => [...prevPokeList, pokemon.name]);
           })
-          setCurrentPokeList([...pokeList])
-          console.log('pokeListaaaa: ', pokeList)
-          console.log('currentPokeList: ', currentPokeList)
         }
       )
   };
+
+  useEffect(() => {
+    setCurrentPokeList([...pokeList])
+  }, [pokeList])
 
   const getAllTypes = () => {
     axios

@@ -23,6 +23,7 @@ function PokeView(props) {
                 <p name='base-stat'>{stat.stat.name}: {stat.base_stat}</p>
               ))}
             </div>
+
           </div>
         </Fragment>
           }

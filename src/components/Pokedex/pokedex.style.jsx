@@ -23,6 +23,7 @@ export const FilterContainer = styled.div`
   padding: 20px;
   
   select{
+    height: 25px;
     background-color: ${GlobalColors.green};
     font-family: eightbit;
     font-size: 2em
@@ -77,9 +78,12 @@ export const PokeOption = styled.div`
   }
 `;
 
+// Screen where pokemon appear
 export const PokeViewContainer = styled.div`
-  display: flex;
   height: 400px;
+  padding: 20px;
+  margin: 20px;
+  display: flex;
   flex-direction: column;
   align-items: center;
   grid-area: pokeview ;
@@ -87,11 +91,10 @@ export const PokeViewContainer = styled.div`
   color: #EDECDD;
   border-radius: 10px;
   border: 3px solid #777;
-  padding: 20px;
-  margin: 20px;
   ${BoxShadow} 
   font-family: 'eightbit', futura;
   font-size: 1.7em;
+  
 
   h2{
     font-size: 30px;
@@ -99,7 +102,6 @@ export const PokeViewContainer = styled.div`
 
   h4{
     font-size: 25px;
-    // align-self: flex-start;
     font-family: eightbit;
   }
 
@@ -110,6 +112,7 @@ export const PokeViewContainer = styled.div`
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto;
     grid-gap: 20px;
+    
     p{
       margin: 10px 25px;
       font-weight: 500;
@@ -124,10 +127,90 @@ export const PokeViewContainer = styled.div`
   }
 `;
 
-export const List = styled.a`
+// List Elements ---------------------------------
+
+
+export const ListContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, minmax(50px, 1fr));
+  grid-gap: 5px  10px;
+  padding: 20px;
+`;
+
+export const List = styled.div`
+  height: 25px;
+  padding: 5px 10px;
+  align-items: center;
+  font-size: 20px;
   background-color: ${GlobalColors.blue};
-  color: white;
+  color: ${GlobalColors.black} ;
   text-decoration: none;
-  
+  border: 3px solid #333;
+  border-radius: 25px;
+  display: grid;
+  grid-template-areas: 'buttonText buttonText add';
+  box-shadow: 3px 3px 0px 3px rgb(3,3,3,.4);
+  transition: all .2s ease-out;
+  position: relative;
+
+  &:hover{
+    transform: translate(2px);
+    box-shadow: 1px 1px 0px 1px rgb(3,3,3,.4);
+  }
+
+`;
+
+
+export const ListButton= styled.button`
+position: absolute;
+z-index: 9;
+font-size: 40px;
+font-weight: 600;
+line-height: 1px;
+background-color: rgb(0,0,0,0);
+border: none;
+box-shadow: none
+
+
+align-self: center;
+justify-self: center;
+align-content: center;
+justify-content: center;
+align-text: center;
+cursor: pointer;
+transition: all .7s ease-out;
+
+  &:hover{
+    transform: scale(1.1) translate(-1px);
+  }
+
+  &.add{
+    color: ${GlobalColors.green};
+    text-shadow: 1px 1px 0px green;
+    grid-area: add;
+
+    &:hover{
+      color: ${GlobalColors.green};
+      text-shadow: 1px 1px 10px green;
+    }
+  }
+
+  &.remove{
+    color: ${GlobalColors.red};
+    text-shadow: 1px 1px 0px #961112;
+    grid-area: remove;
+
+    &:hover{
+      color: ${GlobalColors.red};
+      text-shadow: 1px 1px 10px #999;
+    }
+  }
+`;
+
+export const EditList = styled.span`
+  color: ${GlobalColors.red};
+  font-size: 12px;
+  cursor: pointer;
+  margin: 0px 5px;
 `;
 

@@ -2,7 +2,30 @@ import styled, { createGlobalStyle } from "styled-components";
 import eightBit from "./Assets/Fonts/Eight-Bit Madness.ttf"
 
 const GlobalStyle = createGlobalStyle`
+@keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
 
+@-moz-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-webkit-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-o-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-ms-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
 
   /* width */
 ::-webkit-scrollbar {
@@ -30,6 +53,7 @@ const GlobalStyle = createGlobalStyle`
 
   html {
     font-size: 10px;
+    font-family: 'eightbit';
   }
   body{
     background: #F71013;
