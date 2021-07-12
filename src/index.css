@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: 'futura', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -10,4 +10,28 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+@font-face {
+  font-family: 'pokemon';
+  src: url('./Assets//Fonts/Pokemon\ Hollow.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'eightbit';
+  src: url('./Assets//Fonts/Eight-Bit\ Madness.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+h1{
+  font-family: 'pokemon' !important;
+  font-size: 40px;
+
+}
+
+p{
+  font-family: fantasy;
 }

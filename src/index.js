@@ -1,12 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import Header from './components/Header/Header';
+// import Footer from './components/Footer/Footer';
+import { BrowserRouter } from 'react-router-dom'
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import GlobalStyle from './globalStyles';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <GlobalStyle />
+    <Header />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+    {/* <Footer /> */}
   </React.StrictMode>,
   document.getElementById('root')
 );
