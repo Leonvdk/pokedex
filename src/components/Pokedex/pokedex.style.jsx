@@ -41,9 +41,11 @@ export const InputFilter = styled.input`
   background-color: ${GlobalColors.green};
   font-family: eightbit;
   font-size: 2em
+  
 `;
 
 export const PokeSelect = styled.div`
+  margin-top: 20px;
   height: 78vh;
   grid-area: pokelist;
   justify-self: flex-end;
@@ -54,6 +56,8 @@ export const PokeSelect = styled.div`
   color: ${GlobalColors.black};
   border: 3px solid ${GlobalColors.black};
   border-radius: 15px;
+  box-shadow: inset 1px 1px 15px rgb(1,4,9,.4);
+
 `;
 
 export const PokeOption = styled.div`
@@ -78,7 +82,7 @@ export const PokeOption = styled.div`
   }
 `;
 
-// Screen where pokemon appear
+// Screen where pokemon appear -------------------
 export const PokeViewContainer = styled.div`
   height: 400px;
   padding: 20px;
@@ -158,12 +162,19 @@ export const List = styled.div`
     box-shadow: 1px 1px 0px 1px rgb(3,3,3,.4);
   }
 
+  *{
+    cursor: pointer;
+
+  }
+
 `;
 
 
 export const ListButton= styled.button`
 position: absolute;
 z-index: 9;
+height: 40px;
+width: 40px;
 font-size: 40px;
 font-weight: 600;
 line-height: 1px;

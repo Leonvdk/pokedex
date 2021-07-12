@@ -6,7 +6,7 @@ export const UserContext = createContext(null);
 
 export default function UserContextProvider(props) {
 
-  const { selectedPokemon, setCurrentPokeList, currentPokeList } = useContext(PokeContext);
+  const { selectedPokemon, setCurrentPokeList, setSearchName } = useContext(PokeContext);
 
   //User Id is static for now
   const userId = 1;
@@ -35,20 +35,30 @@ export default function UserContextProvider(props) {
       axios.put(`http://localhost:5000/lists/${userId}/${listId}`, newName)
       .then((response) => setUserLists([...response.data]))
   };
-  
+
   const addToList = (listId) => {
       axios.post(`http://localhost:5000/pokemon/${listId}/${selectedPokemon.name}/`)
       .then((response) => console.log([...response.data]))
-
   };
 
   const getPokemonInList = (listId) => {
     axios.get(`http://localhost:5000/pokemon/${listId}/`)
-    .then((response) => {
-      setCurrentPokeList(response.data.map((pokemon) => (
-        pokemon.pokemon_name
-      )))
+    .then(async (response) => {
+      setCurrentPokeList([])
+      const list = [];
+      const newList = await response.data.map((pokemon) => {
+        list.push(pokemon.pokemon_name)
+        return list;
     })
+    setCurrentPokeList(list);
+    setSearchName(list[0])
+
+
+      // setCurrentPokeList(prevList => [...prevList, response.data.map((pokemon) => (
+      //   pokemon.pokemon_name
+      // ))])
+    }
+    )
   }
 
   async function createNewList () {
