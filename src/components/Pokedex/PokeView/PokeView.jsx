@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, Fragment } from "react";
+import React, { useContext, Fragment } from "react";
 import { PokeContext } from "../../../contexts/PokeContext";
 import { PokeViewContainer } from '../pokedex.style'
 
@@ -20,7 +20,7 @@ function PokeView(props) {
             <h4>Stats:</h4>
             <div id='stats'>
               {selectedPokemon.stats.map((stat)=> (
-                <p name='base-stat'>{stat.stat.name}: {stat.base_stat}</p>
+                <p key={stat.stat.name} name='base-stat'>{stat.stat.name}: {stat.base_stat}</p>
               ))}
             </div>
 

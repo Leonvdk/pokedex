@@ -1,88 +1,132 @@
 import React, { createContext, useState, useEffect, useContext } from "react";
 import axios from "axios";
+import PropTypes from "prop-types";
 import { PokeContext } from "./PokeContext";
+import { AuthContext } from "./AuthContext";
+// import { config } from "../helpers/auth";
 
 export const UserContext = createContext(null);
 
 export default function UserContextProvider(props) {
+  const { selectedPokemon, setCurrentPokeList, setSearchName } =
+    useContext(PokeContext);
+  const { user, auth } = useContext(AuthContext);
 
-  const { selectedPokemon, setCurrentPokeList, setSearchName } = useContext(PokeContext);
+  //User is static for now
+  const currentUser = user;
 
-  //User Id is static for now
-  const userId = 1;
-
-  const [ userLists, setUserLists ] = useState([]);
+  const [userLists, setUserLists] = useState([]);
+  const [myPokemon, setMyPokemon] = useState([]);
 
   const getAllLists = () => {
-    axios.get(`http://localhost:5000/lists/all/${userId}/`)
-    .then(response => {
-      console.log('response data', [...response.data])
-      setUserLists([...response.data])
-    })
-  }
-
-
-
-  async function editListName (listId) {
-    const newName = {}
-    newName.listName = await prompt('Enter new list name or type "delete" to delete this list')
-    newName.listName !== ''&& 
-      newName.listName === 'delete'
-      ?
-      axios.delete(`http://localhost:5000/lists/${userId}/${listId}`)
-      .then((response) => setUserLists([...response.data]))
-      :
-      axios.put(`http://localhost:5000/lists/${userId}/${listId}`, newName)
-      .then((response) => setUserLists([...response.data]))
+    if (auth) {
+      axios.get(`http://localhost:1337/lists?user=${currentUser.id}`).then((response) => {
+        console.log('resp: ',response.data);
+        setUserLists(response.data.map((item) => item));
+      });
+    }
   };
 
+  async function editListName(listId) {
+    const newName = {};
+    newName.listName = await prompt(
+      'Enter new list name or type "delete" to delete this list'
+    );
+    newName.listName !== "" && newName.listName === "delete"
+      ? axios
+          .delete(`http://localhost:1337/lists/${listId}`, {})
+          .then(() => getAllLists())
+      : axios
+          .put(`http://localhost:1337/lists/${listId}`, {
+            listName: newName,
+            users_permissions_user: currentUser.username,
+          })
+          .then(() => getAllLists());
+  }
+
   const addToList = (listId) => {
-      axios.post(`http://localhost:5000/pokemon/${listId}/${selectedPokemon.name}/`)
-      .then((response) => console.log([...response.data]))
+    axios.post(`http://localhost:1337/pokes/`, {
+      name: selectedPokemon.name,
+      list: listId,
+    });
+    try {
+      getPokemonInList(listId);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const getPokemonInList = (listId) => {
-    axios.get(`http://localhost:5000/pokemon/${listId}/`)
-    .then(async (response) => {
-      setCurrentPokeList([])
-      const list = [];
-      const newList = await response.data.map((pokemon) => {
-        list.push(pokemon.pokemon_name)
-        return list;
-    })
-    setCurrentPokeList(list);
-    setSearchName(list[0])
+    axios
+      .get(`http://localhost:1337/lists/${listId}/`)
+      .then(async (response) => {
+        setCurrentPokeList([]);
+        const list = [];
+        await response.data.pokes.map((pokemon) => {
+          list.push(pokemon.name);
+          return list;
+        });
+        setCurrentPokeList(list);
+        setSearchName(list[0]);
 
+        // setCurrentPokeList(prevList => [...prevList, response.data.map((pokemon) => (
+        //   pokemon.pokemon_name
+        // ))])
+      });
+  };
 
-      // setCurrentPokeList(prevList => [...prevList, response.data.map((pokemon) => (
-      //   pokemon.pokemon_name
-      // ))])
+  async function createNewList() {
+    const newList = {};
+    newList.listName = await prompt("What will your list be called?");
+    if (newList.listName !== null) {
+      const response = await axios.post(`http://localhost:1337/lists/`, {
+        users_permissions_user: currentUser.username,
+        listName: newList.listName,
+      });
+      try {
+        setUserLists([...userLists, response.data]);
+      } catch (error) {
+        console.log(error);
+      }
     }
-    )
-  }
-
-  async function createNewList () {
-    const newList = {}
-    newList.listName = await prompt('What will your list be called?')
-    newList.listName !== null&& 
-      axios.post(`http://localhost:5000/lists/${userId}/${newList.listName}`)
-      .then((response) => setUserLists([...response.data]))
   }
 
   useEffect(() => {
-
-  }, [])
+    const getMyPokemon = async () => {
+      const response = await axios.get(`http://localhost:1337/lists?user=${currentUser.id}`);
+      try {
+        console.log("xxx",response)
+        setMyPokemon(response.data.map(item => console.log(item.pokes)));
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getMyPokemon();
+  }, [auth, currentUser.id]);
 
   useEffect(() => {
-    getAllLists()
-  }, [])
+    getAllLists();
+  }, [auth]);
 
+  useEffect(() => {
+    getAllLists();
+  }, []);
 
   return (
     <UserContext.Provider
-      value={{ userLists, setUserLists, addToList, editListName, createNewList, getPokemonInList}}
+      value={{
+        userLists,
+        setUserLists,
+        addToList,
+        editListName,
+        createNewList,
+        getPokemonInList,
+        myPokemon,
+      }}
     >
       {props.children}
     </UserContext.Provider>
   );
 }
+
+UserContextProvider.propTypes = { children: PropTypes.any };

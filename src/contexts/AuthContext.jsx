@@ -1,31 +1,56 @@
-import React,{createContext, useState, useEffect} from "react";
+import React, { createContext, useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import axios from "axios";
 import Cookies from "js-cookie";
-import { config } from "../helpers/auth";
+// import { config } from "../helpers/auth";
 
 export const AuthContext = createContext(null);
 
 export default function AuthContextProvider(props) {
-  const [auth, setAuth] = useState(true);
-  const [user, setUser] = useState(false);
+  const [auth, setAuth] = useState(false);
+  const [user, setUser] = useState({
+    identifier: "",
+    password: "",
+  });
 
-  // useEffect(() => {
-  //   axios
-  //     .get("/auth/verify-token", config)
-  //     .then((response) => {
-  //       console.log(response.data)
-  //       setUser(response.data);
-  //       setAuth(true);
-  //     })
-  //     .catch(() => {
-  //       setAuth(false);
-  //       Cookies.remove("authToken");
-  //     });
-  // }, []);
+  const login = async () => {
+    const response = await axios.post("http://localhost:1337/auth/local", user);
+    try {
+      const jwtToken = response.data.jwt;
+      Cookies.set("authToken", jwtToken);
+      const currentUser = await axios.get("http://localhost:1337/users/me", {
+        headers: {
+          Authorization: "Bearer " + jwtToken,
+        },
+      });
+      try {
+        setUser(currentUser.data);
+        console.log(currentUser.data);
+
+        setAuth(true);
+      } catch (error) {
+        setAuth(false);
+        Cookies.remove("authToken");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const logout = async () => {
+    setAuth(false);
+    Cookies.remove("authToken")
+  };
+
+  useEffect(() => {
+    // login();
+  }, []);
 
   return (
-    <AuthContext.Provider value={{ auth, setAuth, user, setUser }}>
+    <AuthContext.Provider value={{ user, setUser, auth, setAuth, login, logout }}>
       {props.children}
     </AuthContext.Provider>
   );
 }
+
+AuthContextProvider.propTypes = { children: PropTypes.any };

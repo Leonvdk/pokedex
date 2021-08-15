@@ -1,5 +1,4 @@
-import styled, { createGlobalStyle } from "styled-components";
-import eightBit from "./Assets/Fonts/Eight-Bit Madness.ttf"
+import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
 @keyframes fadeIn {

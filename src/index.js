@@ -7,15 +7,17 @@ import { BrowserRouter } from 'react-router-dom'
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import GlobalStyle from './globalStyles';
+import AuthContextProvider from './contexts/AuthContext';
 
 ReactDOM.render(
   <React.StrictMode>
     <GlobalStyle />
+    <AuthContextProvider>
     <Header />
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-    {/* <Footer /> */}
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </AuthContextProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

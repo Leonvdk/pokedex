@@ -1,11 +1,13 @@
-import React, { useState, useEffect, useContext, Fragment } from "react";
+import React, { useEffect, useContext, Fragment } from "react";
 import { UserContext } from "../../../contexts/UserContext";
 import { PokeContext } from "../../../contexts/PokeContext";
 import { List, ListButton, ListContainer, EditList } from '../pokedex.style'
+import { AuthContext } from "../../../contexts/AuthContext";
 
 function UserLists(props) {
   const { userLists, addToList, editListName, createNewList, getPokemonInList } = useContext(UserContext);
   const { selectedPokemon } = useContext(PokeContext);
+  const { auth } = useContext(AuthContext);
 
   useEffect(()=>{
     renderLists()
@@ -21,7 +23,9 @@ function UserLists(props) {
           {/* <ListButton title='Remove Pokemon from this list' className="remove" onClick=" ">-</ListButton> */}
       </List>
     ))}
-    <div onClick={createNewList}>Add new List</div>
+    {auth&&
+    <div id='new-list' onClick={createNewList}>Add new List</div>
+    }
   </ListContainer>
   )
 

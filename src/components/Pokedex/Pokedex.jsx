@@ -6,7 +6,7 @@ import PokeView from "./PokeView/PokeView";
 import { PokedexMain } from "./pokedex.style"
 import UserLists from "./UserLists/UserLists";
 
-function Pokedex(props) {
+function Pokedex() {
   // const { pokeList } = useContext(PokeContext);
 
   return (
