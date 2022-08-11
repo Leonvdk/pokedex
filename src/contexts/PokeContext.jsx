@@ -19,7 +19,7 @@ export default function PokeContextProvider(props) {
           setPokeList((prevPokeList) => [...prevPokeList, pokemon.name]);
         });
       });
-  };
+  }; 
 
   useEffect(() => {
     setCurrentPokeList([...pokeList]);
